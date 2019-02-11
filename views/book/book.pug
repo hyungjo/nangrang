@@ -1,149 +1,37 @@
 extends ../layout
 
 block content
-    button.btn.btn-dark.btn-sm(type='button', data-toggle='modal', data-target='#myModal')
-        | 도서 등록
-
-    p.lead 추천 도서
-    hr
-    .row
-        .col-md-3
-            .card.mb-3.border-dark
-                img.card-img-top(src='/img/book1.jpg', alt='Card image cap')
-                .card-body
-                    h5.card-title Book Title
-                    p.card-text
-                        | Book Contents Summary
-                    a.btn.btn-dark.btn-sm(href='#') Select
-        .col-md-3
-            .card.mb-3.border-dark
-                img.card-img-top(src='/img/book2.jpg', alt='Card image cap')
-                .card-body
-                    h5.card-title Book Title
-                    p.card-text
-                        | Book Contents Summary
-                    a.btn.btn-dark.btn-sm(href='#') Select
-        .col-md-3
-            .card.mb-3.border-dark
-                img.card-img-top(src='/img/book3.jpg', alt='Card image cap')
-                .card-body
-                    h5.card-title Book Title
-                    p.card-text
-                        | Book Contents Summary
-                    a.btn.btn-dark.btn-sm(href='#') Select
-        .col-md-3
-            .card.mb-3.border-dark
-                img.card-img-top(src='/img/book1.jpg', alt='Card image cap')
-                .card-body
-                    h5.card-title Book Title
-                    p.card-text
-                        | Book Contents Summary
-                    a.btn.btn-dark.btn-sm(href='#') Select
-        .col-md-3
-            .card.mb-3.border-dark
-                img.card-img-top(src='/img/book2.jpg', alt='Card image cap')
-                .card-body
-                    h5.card-title Book Title
-                    p.card-text
-                        | Book Contents Summary
-                    a.btn.btn-dark.btn-sm(href='#') Select
-        .col-md-3
-            .card.mb-3.border-dark
-                img.card-img-top(src='/img/book3.jpg', alt='Card image cap')
-                .card-body
-                    h5.card-title Book Title
-                    p.card-text
-                        | Book Contents Summary
-                    a.btn.btn-dark.btn-sm(href='#') Select
-    p.lead 최신 도서
-    hr
-    .row
-        .col-md-3
-            .card.mb-3.border-dark
-                img.card-img-top(src='/img/book1.jpg', alt='Card image cap')
-                .card-body
-                    h5.card-title Book Title
-                    p.card-text
-                        | Book Contents Summary
-                    a.btn.btn-dark.btn-sm(href='#') Select
-        .col-md-3
-            .card.mb-3.border-dark
-                img.card-img-top(src='/img/book2.jpg', alt='Card image cap')
-                .card-body
-                    h5.card-title Book Title
-                    p.card-text
-                        | Book Contents Summary
-                    a.btn.btn-dark.btn-sm(href='#') Select
-        .col-md-3
-            .card.mb-3.border-dark
-                img.card-img-top(src='/img/book3.jpg', alt='Card image cap')
-                .card-body
-                    h5.card-title Book Title
-                    p.card-text
-                        | Book Contents Summary
-                    a.btn.btn-dark.btn-sm(href='#') Select
-        .col-md-3
-            .card.mb-3.border-dark
-                img.card-img-top(src='/img/book1.jpg', alt='Card image cap')
-                .card-body
-                    h5.card-title Book Title
-                    p.card-text
-                        | Book Contents Summary
-                    a.btn.btn-dark.btn-sm(href='#') Select
-        .col-md-3
-            .card.mb-3.border-dark
-                img.card-img-top(src='/img/book2.jpg', alt='Card image cap')
-                .card-body
-                    h5.card-title Book Title
-                    p.card-text
-                        | Book Contents Summary
-                    a.btn.btn-dark.btn-sm(href='#') Select
-        .col-md-3
-            .card.mb-3.border-dark
-                img.card-img-top(src='/img/book3.jpg', alt='Card image cap')
-                .card-body
-                    h5.card-title Book Title
-                    p.card-text
-                        | Book Contents Summary
-                    a.btn.btn-dark.btn-sm(href='#') Select
-
-    // The Modal
-    #myModal.modal
-        .modal-dialog.modal-lg
-            .modal-content
-                // Modal Header
-                .modal-header
-                    h4.modal-title 도서 등록
-                    button.close(type='button', data-dismiss='modal') ×
-                // Modal body
-                .modal-body
-                    form(action='/account/password', method='POST')
-                        input(type='hidden', name='_csrf', value=_csrf)
-                        .row
-                            .col-md-2.text-md-center
-                                .form-group
-                                    img.rounded.img-thumbnail(src='/img/book_temp.png', alt='이미지 등록')
-                                .form-group
-                                    label.btn.btn-dark(for='my-file-selector')
-                                        input(type='file', id='my-file-selector' style='display:none;')
-                                        |     이미지 등록
-                            .col-md
-                                .form-group.row
-                                    label.col-md-1.col-form-label.font-weight-bold.text-right(for='title') 제목
-                                    .col-md
-                                        input.form-control(type='text', name='title', id='title', autocomplete='Title')
-                                .form-group.row
-                                    label.col-md-1.col-form-label.font-weight-bold.text-right(for='author') 저자
-                                    .col-md
-                                        input.form-control(type='text', name='author', id='author', autocomplete='Author')
-                                .form-group.row
-                                    label.col-md-1.col-form-label.font-weight-bold.text-right(for='contents') 내용
-                                    .col-md
-                                        textarea.form-control(rows='7', name='contents', id='contents', autocomplete='ㅊontents')
-
-                // Modal footer
-                .modal-footer
-                    button.btn.btn-primary(type='button', data-dismiss='modal') 등록
-                    button.btn.btn-border(type='button', data-dismiss='modal') 취소
-
-    
+    .container-fluid
+        .page-content
+            .wizard-v5-content
+                .wizard-form
+                    form#form-register.form-register(action='#', method='post')
+                        #form-total
+                            // SECTION 1
+                            h2
+                                span.step-icon
+                                    i.zmdi.zmdi-check
+                                span.step-text 도서 선택
+                            section
+                                include book-select
+                            // SECTION 2
+                            h2
+                                span.step-icon
+                                    i.zmdi.zmdi-check
+                                span.step-text 도서 낭독
+                            section
+                                include book-record
+                            // SECTION 3
+                            h2
+                                span.step-icon
+                                    i.zmdi.zmdi-check
+                                span.step-text 낭독 검수
+                            section
+                                include book-analysis
+                            // SECTION 4
+                            h2
+                                span.step-icon
+                                    i.zmdi.zmdi-check
+                                span.step-text 검수 결과
+                            section
+                                include book-result
