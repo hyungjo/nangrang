@@ -1,0 +1,56 @@
+ul#myTab.nav.nav-tabs(role='tablist', style='float: left; display: block')
+    li.nav-item
+        a.nav-link.active(data-toggle='tab', href='#home', role='tab', aria-controls='home') 도서 추천
+    li.nav-item
+        a.nav-link(data-toggle='tab', href='#profile', role='tab', aria-controls='profile') 도서 검색
+.tab-content
+    #home.tab-pane.active(role='tabpanel')
+        include book-select
+    #profile.tab-pane(role='tabpane2') ..2.
+
+
+
+
+//button.btn.btn-dark.btn-sm(type='button', data-toggle='modal', data-target='#myModal')
+       //    | 도서 등록
+
+// The Modal
+//#myModal.modal
+//    .modal-dialog.modal-lg
+//        .modal-content
+//            // Modal Header
+//            .modal-header
+//                h4.modal-title 도서 등록
+//                button.close(type='button', data-dismiss='modal') ×
+//            // Modal body
+//            .modal-body
+//                form(action='/account/password', method='POST')
+//                    input(type='hidden', name='_csrf', value=_csrf)
+//                    .row
+//                        .col-md-2.text-md-center
+//                            .form-group
+//                                img.rounded.img-thumbnail(src='/img/book_temp.png', alt='이미지 등록')
+//                            .form-group
+//                                label.btn.btn-dark(for='my-file-selector')
+//                                    input(type='file', id='my-file-selector' style='display:none;')
+//                                    |     이미지 등록
+//                        .col-md
+//                            .form-group.row
+//                                label.col-md-1.col-form-label.font-weight-bold.text-right(for='title') 제목
+//                                .col-md
+//                                    input.form-control(type='text', name='title', id='title', autocomplete='Title')
+//                            .form-group.row
+//                                label.col-md-1.col-form-label.font-weight-bold.text-right(for='author') 저자
+//                                .col-md
+//                                    input.form-control(type='text', name='author', id='author', autocomplete='Author')
+//                            .form-group.row
+//                                label.col-md-1.col-form-label.font-weight-bold.text-right(for='contents') 내용
+//                                .col-md
+//                                    textarea.form-control(rows='7', name='contents', id='contents', autocomplete='ㅊontents')
+//
+//            // Modal footer
+//            .modal-footer
+//                button.btn.btn-primary(type='button', data-dismiss='modal') 등록
+//                button.btn.btn-border(type='button', data-dismiss='modal') 취소
+//
+//

@@ -8,8 +8,9 @@ html
     meta(name='csrf-token', content=_csrf)
     title #{title} - 밝은소리 낭랑
     link(rel='shortcut icon', href='/nangranglogo.png')
+    link(rel='stylesheet', href='/css/nunito-font.css')
+    link(rel='stylesheet', href='/fonts/material-design-iconic-font/css/material-design-iconic-font.min.css')
     link(rel='stylesheet', href='/css/main.css')
-
   body
     include partials/header
 
@@ -20,6 +21,7 @@ html
     include partials/footer
 
     script(src='/js/lib/jquery.min.js')
+    script(src='/js/jquery.steps.js')
     script(src='/js/lib/popper.min.js')
     script(src='/js/lib/bootstrap.min.js')
     script(src='/js/main.js')
