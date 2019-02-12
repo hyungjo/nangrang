@@ -1,6 +1,6 @@
 var websocket = null;
 
-	var wsUri = "wss://speechcatch.aibril.com/api/"; 
+	var wsUri = "wss://speechcatch.aibril.com/api"; 
 	
 	var g_timerId 		= 0;
 	var g_arrModelTxt	= ["General"];
@@ -165,6 +165,9 @@ var websocket = null;
 	function init(){
 		$('textarea[id=mfl_text0]').val("");
 	}
+
+	// WebSocket Open check
+	function isOpen() { return websocket.readyState === websocket.OPEN }
 	
 	window.onbeforeunload = function() {
 		websocket.close();
