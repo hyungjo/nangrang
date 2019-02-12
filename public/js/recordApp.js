@@ -159,7 +159,7 @@ function createDownloadLink(blob) {
 		console.log(fileData);
 
 		$.ajax({
-			url: "http://localhost:8083/record",
+			url: "http://localhost:8080/record",
 			type: "POST",
 			data: fileData,
 			processData: false,
@@ -167,12 +167,14 @@ function createDownloadLink(blob) {
 			success: function(data) {
 				alert("success!!");
 
+				window.relo
+
 				var data = {
 					'fileName': filename
 				};
 
 				$.ajax({
-					url: 'http://localhost:8083/stt',
+					url: 'http://localhost:8080/stt',
 					type: 'POST',
 					data: data,
 					success: function(result) {

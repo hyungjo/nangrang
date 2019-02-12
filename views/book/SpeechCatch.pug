@@ -1,0 +1,48 @@
+﻿extends ../layout
+
+block content
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    meta(name='description', content='')
+    meta(name='author', content='')
+    link(rel='stylesheet', href='/css/stt.common.css')
+    style.
+      canvas {
+      display: inline-block;
+      background: #202020;
+      width: 95%;
+      height: 45%;
+      box-shadow: 0px 0px 10px blue;
+      align: center;
+      }
+  body
+    // ------------조회 테이터 테이블  start----------
+    .col-lg-12
+      .panel.panel-default
+        table.type_sch(width='100%', border='0')
+          tbody
+            tr
+              th 모델선택
+              td(style='width:80%')
+                div
+                  .input-group
+                    #radio_lm.btn-group
+                    input#lm_data(type='hidden', name='lm_data')
+    #mic.panel-body
+      table(width='100%', border='0')
+        tbody
+          tr
+            td(align='center')
+              input#btn_recStart.btn.btn-default(type='button', value='On', onclick='recStart(this)')
+              input#btn_recStop.btn.btn-default(type='button', value='Off', onclick='recStop(this)', disabled='')
+            td(style='width:60%')
+              p
+                canvas#analyser(width='1024', height='100')
+    .col-xs-12
+      .panel.panel-default
+        .panel-heading
+          span#span_textarea0
+        .panel-body
+          textarea#mfl_text0.form-control.rounded-0(rows='18')

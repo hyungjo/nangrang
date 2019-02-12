@@ -21,6 +21,17 @@ const sass = require('node-sass-middleware');
 const multer = require('multer');
 
 const upload = multer({ dest: path.join(__dirname, 'uploads') });
+const upload2 = multer({ 
+  // dest: path.join(__dirname, 'uploads') 
+  storage: multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, path.join(__dirname, 'uploads'));
+    },
+    filename: function (req, file, cb) {
+      cb(null, file.originalname);
+    }
+  }),
+});
 
 /**
  * Load environment variables from .env file, where API keys and passwords are configured.
@@ -93,7 +104,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 app.use((req, res, next) => {
-  if (req.path === '/api/upload' || req.path === '/stt' || req.path === '/record') {
+  if (req.path === '/api/upload' || req.path === '/stt' || req.path === '/record' || req.path === '/ws') {
     next();
   } else {
     lusca.csrf()(req, res, next);
@@ -126,6 +137,18 @@ app.use('/js/lib', express.static(path.join(__dirname, 'node_modules/bootstrap/d
 app.use('/js/lib', express.static(path.join(__dirname, 'node_modules/jquery/dist'), { maxAge: 31557600000 }));
 app.use('/webfonts', express.static(path.join(__dirname, 'node_modules/@fortawesome/fontawesome-free/webfonts'), { maxAge: 31557600000 }));
 app.use('/img', express.static(path.join(__dirname, 'public/img'), { maxAge: 31557600000 }));
+
+/**
+ * Record app routes.
+ */
+app.get('/record', recordController.getRecord);
+app.post('/record', upload2.single('myFile'), recordController.setRecord);
+
+app.get('/ws', (req, res) => {
+  console.log('Here in get /ws');
+  res.sendFile(__dirname + '/SpeechCatch.html');
+});
+
 
 /**
  * Primary app routes.

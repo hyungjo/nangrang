@@ -37,9 +37,9 @@
             .p-3
                h4 녹음
                 div#controls
-                a.btn#recordButton(href='#', role='button') Record
-                a.btn#pauseButton(href='#', role='button') Pause
-                a.btn#stopButton(href='#', role='button') Stop
+                a.btn#recordButton(href='#', role='button', onClick='startRecording()') Record
+                a.btn#pauseButton(href='#', role='button' onClick='pauseRecording()') Pause
+                a.btn#stopButton(href='#', role='button' onClick='stopRecording()') Stop
 
                 div#formats Format: start recording to see sample rate
                 h3(color='red') Recordings
