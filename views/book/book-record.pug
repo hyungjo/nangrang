@@ -35,9 +35,12 @@
 
         aside.col-md-4.blog-sidebar(style = 'border-left : 1px solid lightgray; padding-left:15px;')
             .p-3
-                h4 녹음
-                ol.list-unstyled.mb-0
-                    p.mb-0
-                    | Etiam porta
-                    em sem malesuada magna
-                    |  mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.
+               h4 녹음
+                div#controls
+                a.btn#recordButton(href='#', role='button') Record
+                a.btn#pauseButton(href='#', role='button') Pause
+                a.btn#stopButton(href='#', role='button') Stop
+
+                div#formats Format: start recording to see sample rate
+                h3(color='red') Recordings
+                ol#recordingsList
