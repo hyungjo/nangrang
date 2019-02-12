@@ -149,7 +149,7 @@ app.post('/account/delete', passportConfig.isAuthenticated, userController.postD
 app.get('/account/unlink/:provider', passportConfig.isAuthenticated, userController.getOauthUnlink);
 
 app.get('/book', bookController.getBook);
-app.post('/stt', sttController.getStt);
+app.post('/stt', sttController.postStt);
 app.post('/record', recordController.setRecord);
 
 /**
