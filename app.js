@@ -34,6 +34,7 @@ const homeController = require('./controllers/home');
 const userController = require('./controllers/user');
 const apiController = require('./controllers/api');
 const contactController = require('./controllers/contact');
+const recordController = require('./controllers/record')
 
 const bookController = require('./controllers/book');
 const sttController = require('./controllers/stt');
@@ -92,7 +93,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 app.use((req, res, next) => {
-  if (req.path === '/api/upload' || req.path === '/stt') {
+  if (req.path === '/api/upload' || req.path === '/stt' || req.path === '/record') {
     next();
   } else {
     lusca.csrf()(req, res, next);
@@ -149,6 +150,7 @@ app.get('/account/unlink/:provider', passportConfig.isAuthenticated, userControl
 
 app.get('/book', bookController.getBook);
 app.post('/stt', sttController.getStt);
+app.post('/record', recordController.setRecord);
 
 /**
  * API examples routes.
