@@ -36,6 +36,7 @@ const apiController = require('./controllers/api');
 const contactController = require('./controllers/contact');
 
 const bookController = require('./controllers/book');
+const sttController = require('./controllers/stt');
 
 /**
  * API keys and Passport configuration.
@@ -91,7 +92,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 app.use((req, res, next) => {
-  if (req.path === '/api/upload') { //URL 수정
+  if (req.path === '/api/upload' || req.path === '/stt') {
     next();
   } else {
     lusca.csrf()(req, res, next);
@@ -147,6 +148,7 @@ app.post('/account/delete', passportConfig.isAuthenticated, userController.postD
 app.get('/account/unlink/:provider', passportConfig.isAuthenticated, userController.getOauthUnlink);
 
 app.get('/book', bookController.getBook);
+app.post('/stt', sttController.getStt);
 
 /**
  * API examples routes.
