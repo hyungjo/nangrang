@@ -41,6 +41,7 @@ var websocket = null;
 		$('#btn_recStart').addClass("btn btn-danger");
 		$('#btn_recStart').prop("disabled", true);
 		$('#btn_recStop').prop("disabled", false);
+		$('#btn_recInspection').prop("disabled", false);
 		
 		g_stat 			= 0;
 		g_readOffset	= 0;
