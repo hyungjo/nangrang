@@ -1,13 +1,36 @@
 //inner
 .inner
+    .row
+
+        // ------------조회 테이터 테이블  start----------
+        .col-lg-12(style='display:none')
+            .panel.panel-default
+                table.type_sch(width='100%', border='0')
+                tbody
+                    tr
+                    th 모델선택
+                    td(style='width:80%')
+                        div
+                        .input-group
+                            #radio_lm.btn-group
+                            input#lm_data(type='hidden', name='lm_data')
+        #mic.panel-body
+            table(width='100%', border='0')
+                tbody
+                tr
+                    td(align='center')
+                    input#btn_recStart.btn.btn-default(type='button', value='On', onclick='recStart(this)')
+                    input#btn_recStop.btn.btn-default(type='button', value='Off', onclick='recStop(this)', disabled='')
+                    td(style='width:60%')
+                    p
+                        canvas#analyser(width='1024', height='100')
     .row            
-        .col-md-8.blog-main(style = 'padding-right:35px;')
+        .col-md-6.blog-main(style = 'padding-right:16px;')
             .blog-post
                 .card.p-3.mb-3.shadow-sm.h-md-250
                     h3.text-center(style='color:black;padding-left:0px;') 책 제목
                     p
-                    | Viv   amus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-
+                    | 운수 좋은 날의 작가, 현진건 작품집. 1920년부터 1931년까지 발표한 작품 중에서 선정한 20편의 단편소설과 1편의 중편소설을 수록하였다. 작가의 대부분 작품들은 삶의 미지의 영역에 대한 휴머니즘적인 탐구, 낭만주의적 아이러니의 강렬성, 억압적인 제도와 제한적인 신념들에 대한 사회적 인식 등이 중층적으로 자리를 잡고 있다. 
                 .p-3.mb-3.bg-light.rounded
                     p
                     | Etiam porta
@@ -33,14 +56,11 @@
                     | Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
                     pre.
 
-        aside.col-md-4.blog-sidebar(style = 'border-left : 1px solid lightgray; padding-left:15px;')
-            .p-3
-               h4 녹음
-                div#controls
-                a.btn#recordButton(href='#', role='button', onClick='startRecording()') Record
-                a.btn#pauseButton(href='#', role='button' onClick='pauseRecording()') Pause
-                a.btn#stopButton(href='#', role='button' onClick='stopRecording()') Stop
-
-                div#formats Format: start recording to see sample rate
-                h3(color='red') Recordings
-                ol#recordingsList
+        aside.col-md-6.blog-sidebar(style = 'border-left : 1px solid lightgray; padding-left:15px;')
+            body
+                .col-xs-12
+                    .panel.panel-default
+                        .panel-heading
+                        span#span_textarea0
+                        .panel-body
+                        textarea#mfl_text0.form-control.rounded-0(rows='18')

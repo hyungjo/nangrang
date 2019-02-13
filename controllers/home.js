@@ -3,7 +3,7 @@
  * Home page.
  */
 exports.index = (req, res) => {
-  res.render('book/SpeechCatch', {
+  res.render('home', {
     title: 'Home'
   });
 };
