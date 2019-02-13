@@ -14,14 +14,14 @@
                         .input-group
                             #radio_lm.btn-group
                             input#lm_data(type='hidden', name='lm_data')
-        #mic.panel-body
+        #mic.panel-body(style='width:95%')
             table(width='100%', border='0')
                 tbody
                 tr
                     td(align='center')
                     input#btn_recStart.btn.btn-default(type='button', value='녹음시작', onclick='recStart(this)' style='margin-left:13px')
                     input#btn_recStop.btn.btn-default(type='button', value='녹음중지', onclick='recStop(this)', disabled='')
-                    input#btn_recInspection.btn.btn-default(type='button', value='검수시작', onclick='', disabled='')
+                    input#btn_recInspection.btn.btn-default(type='button', value='검수시작', onclick='', disabled='', style='float:right')
                     td(style='width:60%')
                     p
                         canvas#analyser(style='width:95%; height:100px; padding-top:10px; padding-left:15px') 
