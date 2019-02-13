@@ -1,63 +1,17 @@
 .inner
-    .container
-        .box
-            .imgBox
-                img(src='https://www.planwallpaper.com/static/images/47141475-hd-wallpapers.jpg')
-            .content
-                h2 Image Hover Effects
-                p
-                    | Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    | tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                    | quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                    | consequat.
-        .box
-            .imgBox
-                img(src='https://www.planwallpaper.com/static/images/47141475-hd-wallpapers.jpg')
-            .content
-                h2 Image Hover Effects
-                p
-                    | Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    | tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                    | quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                    | consequat.
-        .box
-            .imgBox
-                img(src='https://www.planwallpaper.com/static/images/47141475-hd-wallpapers.jpg')
-            .content
-                h2 Image Hover Effects
-                p
-                    | Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    | tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                    | quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                    | consequat.
-        .box
-            .imgBox
-                img(src='https://www.planwallpaper.com/static/images/47141475-hd-wallpapers.jpg')
-            .content
-                h2 Image Hover Effects
-                p
-                    | Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    | tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                    | quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                    | consequat.
-        .box
-            .imgBox
-                img(src='https://www.planwallpaper.com/static/images/47141475-hd-wallpapers.jpg')
-            .content
-                h2 Image Hover Effects
-                p
-                    | Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    | tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                    | quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                    | consequat.
-        .box
-            .imgBox
-                img(src='https://www.planwallpaper.com/static/images/47141475-hd-wallpapers.jpg')
-            .content
-                h2 Image Hover Effects
-                p
-                    | Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    | tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                    | quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                    | consequat.
-
+    ul#myTab.nav.nav-tabs(role='tablist')
+        li.nav-item
+            a#home-tab.nav-link.active(data-toggle='tab', href='#reg', role='tab', aria-controls='reg', aria-selected='true') 도서 등록
+        li.nav-item
+            a#profile-tab.nav-link(data-toggle='tab', href='#recommand', role='tab', aria-controls='recommand', aria-selected='false') 추천 도서
+        li.nav-item
+            a#profile-tab.nav-link(data-toggle='tab', href='#list', role='tab', aria-controls='list', aria-selected='false') 전체 도서
+    #myTabContent.tab-content
+        #reg.tab-pane.fade.show.active(role='tabpanel', aria-labelledby='home-tab')
+            .form-inline
+                .form-group.mb-2
+                    label.sr-only(for='isbncode') ISBN Code
+                    input#isbncode.form-control(type='text', placeholder='ISBN Code')
+                button.btn.btn-primary.mb-2(type='button', onclick='getBookInfo()') 등록
+        #recommand.tab-pane.fade(role='tabpanel', aria-labelledby='profile-tab') 추천 도서
+        #list.tab-pane.fade(role='tabpanel', aria-labelledby='contact-tab') 전체 도

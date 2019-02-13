@@ -1,5 +1,6 @@
 /* eslint-env jquery, browser */
 $(document).ready(() => {
+    // Book Step UI
     $("#form-total").steps({
         headerTag: "h2",
         bodyTag: "section",
@@ -35,3 +36,8 @@ $(document).ready(() => {
         }
     });
 });
+
+// 도서 등록
+function getBookInfo(){
+    alert('aaaaa');
+}

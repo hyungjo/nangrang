@@ -104,7 +104,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 app.use((req, res, next) => {
-  if (req.path === '/api/upload' || req.path === '/stt' || req.path === '/record' || req.path === '/ws') {
+  if (req.path === '/api/upload' || req.path === '/stt' || req.path === '/record' || req.path === '/book') {
     next();
   } else {
     lusca.csrf()(req, res, next);
@@ -174,6 +174,12 @@ app.get('/account/unlink/:provider', passportConfig.isAuthenticated, userControl
 app.get('/book', bookController.getBook);
 app.post('/stt', sttController.postStt);
 app.post('/record', recordController.setRecord);
+app.post('/book/favorite/reg', bookController.regFavoriteBook);
+app.get('/book/favorite/list', bookController.getFavoriteBook);
+app.post('/book/reg', bookController.regBook);
+app.get('/book/list', bookController.getBookList);
+app.get('/book/info', bookController.getBookInfo);
+app.get('/book/best', bookController.getBestBook);
 
 /**
  * API examples routes.
