@@ -21,6 +21,17 @@ const sass = require('node-sass-middleware');
 const multer = require('multer');
 
 const upload = multer({ dest: path.join(__dirname, 'uploads') });
+const upload2 = multer({ 
+  // dest: path.join(__dirname, 'uploads') 
+  storage: multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, path.join(__dirname, 'uploads'));
+    },
+    filename: function (req, file, cb) {
+      cb(null, file.originalname);
+    }
+  }),
+});
 
 /**
  * Load environment variables from .env file, where API keys and passwords are configured.
@@ -34,8 +45,10 @@ const homeController = require('./controllers/home');
 const userController = require('./controllers/user');
 const apiController = require('./controllers/api');
 const contactController = require('./controllers/contact');
+const recordController = require('./controllers/record')
 
 const bookController = require('./controllers/book');
+const sttController = require('./controllers/stt');
 
 /**
  * API keys and Passport configuration.
@@ -91,7 +104,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 app.use((req, res, next) => {
-  if (req.path === '/api/upload' || req.path === '/book') { //URL 수정
+  if (req.path === '/api/upload' || req.path === '/stt' || req.path === '/record' || req.path === '/book') {
     next();
   } else {
     lusca.csrf()(req, res, next);
@@ -126,6 +139,18 @@ app.use('/webfonts', express.static(path.join(__dirname, 'node_modules/@fortawes
 app.use('/img', express.static(path.join(__dirname, 'public/img'), { maxAge: 31557600000 }));
 
 /**
+ * Record app routes.
+ */
+app.get('/record', recordController.getRecord);
+app.post('/record', upload2.single('myFile'), recordController.setRecord);
+
+app.get('/ws', (req, res) => {
+  console.log('Here in get /ws');
+  res.sendFile(__dirname + '/SpeechCatch.html');
+});
+
+
+/**
  * Primary app routes.
  */
 app.get('/', homeController.index);
@@ -147,6 +172,8 @@ app.post('/account/delete', passportConfig.isAuthenticated, userController.postD
 app.get('/account/unlink/:provider', passportConfig.isAuthenticated, userController.getOauthUnlink);
 
 app.get('/book', bookController.getBook);
+app.post('/stt', sttController.postStt);
+app.post('/record', recordController.setRecord);
 app.post('/book/favorite/reg', bookController.regFavoriteBook);
 app.get('/book/favorite/list', bookController.getFavoriteBook);
 app.post('/book/reg', bookController.regBook);
