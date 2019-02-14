@@ -1,6 +1,6 @@
 /* eslint-env jquery, browser */
 $(document).ready(() => {
-    
+
     // Book Step UI
     $("#form-total").steps({
         headerTag: "h2",
@@ -48,8 +48,8 @@ function getBookInfo(){
         dataType : 'json',
         contentType : 'application/json',
         data : JSON.stringify({isbn: book_isbn}),
-        success : function(data){
-            alert(data);
+        success : function(result){
+            alert(result);
         },
         error   : function (err) {
             alert(err);

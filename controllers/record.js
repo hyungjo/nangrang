@@ -7,3 +7,8 @@ exports.getRecord = (req, res) => {
     title: 'Record'
   });
 };
+
+exports.setRecord = (req, res) => {
+  res.status(200);
+  res.json({});
+};
