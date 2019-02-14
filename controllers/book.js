@@ -15,6 +15,36 @@ exports.getBook = (req, res) => {
   });
 };
 
+exports.getPythonFunction = (req, res) => {
+  // Use child_process.spawn method from
+  // child_process module and assign it
+  // to variable spawn
+
+  var spawn = require('child_process').spawn;
+
+  // Parameters passed in spawn -
+  // 1. type_of_script
+  // 2. list containing Path of the script
+  //    and arguments for the script
+
+  // E.g : http://localhost:3000/name?firstname=Mike&lastname=Will
+  // so, first name = Mike and last name = Will
+  var process = spawn('python3',[__dirname + "/collaborativefilltering.py", 1, 2] );
+  console.log('pypypy');
+  // Takes stdout data from script which executed
+  // with arguments and send this data to res object
+  process.stdout.on('data', (data) => {
+    console.log(data.toString());
+  });
+
+  process.stderr.on('data', function (data) {
+    console.log('stderr: ' + data.toString());
+  });
+
+  process.on('exit', function (code) {
+    console.log('child process exited with code ' + code.toString());
+  });
+}
 
 // /book/setfavoritebook
 // 도서 평점 등록
@@ -53,7 +83,7 @@ exports.getFavoriteBook = (req, res) => {
 // Params: ISBN
 exports.regBook = (req, res) => {
   const options = {
-    url: `https://openapi.naver.com/v1/search/book_adv.xml?d_isbn=${isbn}`,
+    url: `https://openapi.naver.com/v1/search/book_adv.xml?d_isbn=${req.body.isbn}`,
     headers: {
       'X-Naver-Client-Id': 'O2oE1113zyse0UqLI6js',
       'X-Naver-Client-Secret': 'WAnjerzG5b'
@@ -78,7 +108,8 @@ exports.regBook = (req, res) => {
         book.save((err) => {
           if (err) { console.log(err); } else {
             res.status(200);
-            res.json(favoritebook);
+            console.log(book);
+            res.json(book);
           }
         });
       });
@@ -105,6 +136,7 @@ exports.getBookInfo = (req, res) => {
   Book.findOne({isbn: req.body.isbn}, (err, info) => {
     if (err) { console.log(err); }
     else {
+      console.log(info);
       res.status(200);
       res.json(info);
     }
@@ -207,3 +239,6 @@ exports.getBestBook = (req, res) => {
     });
   });
 };
+
+//http://localhost:8000/recommend?user_id=254
+//http://localhost:8000/match?str1=abc&str2=bbd

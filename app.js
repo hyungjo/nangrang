@@ -21,8 +21,8 @@ const sass = require('node-sass-middleware');
 const multer = require('multer');
 
 const upload = multer({ dest: path.join(__dirname, 'uploads') });
-const upload2 = multer({ 
-  // dest: path.join(__dirname, 'uploads') 
+const upload2 = multer({
+  // dest: path.join(__dirname, 'uploads')
   storage: multer.diskStorage({
     destination: function (req, file, cb) {
       cb(null, path.join(__dirname, 'uploads'));
@@ -104,7 +104,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 app.use((req, res, next) => {
-  if (req.path === '/api/upload' || req.path === '/stt' || req.path === '/record' || req.path === '/book') {
+  if (req.path === '/api/upload' || req.path === '/stt' || req.path === '/record' || req.path === '/book'
+    || req.path === '/book/info' || req.path === '/book/reg') {
     next();
   } else {
     lusca.csrf()(req, res, next);
@@ -178,8 +179,9 @@ app.post('/book/favorite/reg', bookController.regFavoriteBook);
 app.get('/book/favorite/list', bookController.getFavoriteBook);
 app.post('/book/reg', bookController.regBook);
 app.get('/book/list', bookController.getBookList);
-app.get('/book/info', bookController.getBookInfo);
+app.post('/book/info', bookController.getBookInfo);
 app.get('/book/best', bookController.getBestBook);
+app.get('/book/test', bookController.getPythonFunction);
 
 /**
  * API examples routes.

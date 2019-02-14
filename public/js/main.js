@@ -39,5 +39,20 @@ $(document).ready(() => {
 
 // 도서 등록
 function getBookInfo(){
-    alert('aaaaa');
+    var book_isbn = $('#isbncode').val();
+
+    $.ajax({
+        type : "POST",
+        url : "/book/reg",
+        dataType : 'json',
+        contentType : 'application/json',
+        data : JSON.stringify({isbn: book_isbn}),
+        success : function(data){
+            alert(data);
+        },
+        error   : function (err) {
+            alert(err);
+        }
+
+    });
 }
