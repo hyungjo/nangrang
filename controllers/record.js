@@ -1,22 +1,9 @@
-var fs = require('fs')
-
-
 /**
- * Record main page
+ * GET /book
+ * Book page.
  */
 exports.getRecord = (req, res) => {
   res.render('record/record', {
     title: 'Record'
   });
-};
-
-/**
- * Save Record
- */
-
-exports.setRecord = (req, res) => {
-
-  // console.log('New fact for ');
-  
-  res.json({status: 'ok' });
 };
