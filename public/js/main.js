@@ -1,5 +1,6 @@
 /* eslint-env jquery, browser */
 $(document).ready(() => {
+    
     // Book Step UI
     $("#form-total").steps({
         headerTag: "h2",
