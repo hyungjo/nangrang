@@ -41,7 +41,7 @@ var websocket = null;
 		$('#btn_recStart').addClass("btn btn-danger");
 		$('#btn_recStart').prop("disabled", true);
 		$('#btn_recStop').prop("disabled", false);
-		$('#btn_recInspection').prop("disabled", false);
+		$('#btn_recFinish').prop("disabled", false);
 		
 		g_stat 			= 0;
 		g_readOffset	= 0;
@@ -67,6 +67,30 @@ var websocket = null;
 		
 		audioRecorder.stop();
 		audioRecorder.getBuffers( gotBuffers );
+	}
+
+	function recFinish() {
+		$('#btn_recStart').prop("disabled", false);
+		$('#btn_recStop').prop("disabled", true);
+		
+		g_stat = 3;
+
+		$.ajax({
+			url: 'http://localhost:8080/recfinish',
+			type: 'POST',
+			dataType:"json",
+			data: {str1:$('#original-text').text(),str2:$('#mfl_text0').val()},
+			
+			success: function(result) {
+				console.log('SUCCESS: call inspection');
+				console.log(result);
+			},
+			error: function(response, status, error) {
+				console.log('ERROR: call inspection');
+			}
+		});
+		
+		
 	}
 			
 	function mainGetSliceBuffers() { 

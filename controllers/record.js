@@ -12,3 +12,8 @@ exports.setRecord = (req, res) => {
   res.status(200);
   res.json({});
 };
+
+exports.finishRecord = (req, res) => {
+  res.status(200);
+  res.json({});
+};
