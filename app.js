@@ -182,6 +182,7 @@ app.get('/book/list', bookController.getBookList);
 app.post('/book/info', bookController.getBookInfo);
 app.get('/book/best', bookController.getBestBook);
 app.get('/book/test', bookController.getPythonFunction);
+app.get('/book/ins', bookController.insertJson);
 
 /**
  * API examples routes.

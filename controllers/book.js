@@ -10,8 +10,144 @@ const User = require('../models/User');
 const Favorite = require('../models/Favorite');
 
 exports.getBook = (req, res) => {
-  res.render('book/book', {
-    title: 'Book'
+  Book.find({}, (err, bookList) => {
+    if (err) { console.log(err); } else {
+      res.render('book/book', {
+        title: 'Book',
+        books: bookList
+      });
+    }
+  });
+
+
+};
+
+exports.insertJson = (req, res) => {
+  var jsondata = [];
+
+  var eee =     [{ user: 'sk01@sk.com', isbn: '9788950979300', stars: '5' },
+    { user: 'sk01@sk.com', isbn: '9788952795090', stars: '4' },
+    { user: 'sk01@sk.com', isbn: '9788950971441', stars: '4' },
+    { user: 'sk01@sk.com', isbn: '9788936447014', stars: '5' },
+    { user: 'sk01@sk.com', isbn: '9791156397267', stars: '4' },
+    { user: 'sk01@sk.com', isbn: '9788966350957', stars: '5' },
+    { user: 'sk01@sk.com', isbn: '9791130620459', stars: '1' },
+    { user: 'sk01@sk.com', isbn: '9788935212484', stars: '1' },
+    { user: 'sk01@sk.com', isbn: '9788950979430', stars: '1' },
+    { user: 'sk01@sk.com', isbn: '9791195522125', stars: '2' },
+    { user: 'sk02@sk.com', isbn: '9788966350957', stars: '5' },
+    { user: 'sk02@sk.com', isbn: '9791156397267', stars: '4' },
+    { user: 'sk02@sk.com', isbn: '9788950971441', stars: '5' },
+    { user: 'sk02@sk.com', isbn: '9788952795090', stars: '4' },
+    { user: 'sk02@sk.com', isbn: '9788950979300', stars: '5' },
+    { user: 'sk02@sk.com', isbn: '9791162339466', stars: '3' },
+    { user: 'sk02@sk.com', isbn: '9791158681531', stars: '5' },
+    { user: 'sk02@sk.com', isbn: '9791188874262', stars: '4' },
+    { user: 'sk03@sk.com', isbn: '9788935212484', stars: '5' },
+    { user: 'sk03@sk.com', isbn: '9791158510244', stars: '5' },
+    { user: 'sk03@sk.com', isbn: '9791186757093', stars: '3' },
+    { user: 'sk03@sk.com', isbn: '9788997092772', stars: '5' },
+    { user: 'sk03@sk.com', isbn: '9788965707561', stars: '4' },
+    { user: 'sk03@sk.com', isbn: '9788957369937', stars: '5' },
+    { user: 'sk03@sk.com', isbn: '9788937461033', stars: '5' },
+    { user: 'sk03@sk.com', isbn: '8949190028', stars: '4' },
+    { user: 'sk03@sk.com', isbn: '9788932903187', stars: '5' },
+    { user: 'sk03@sk.com', isbn: '8973374931', stars: '5' },
+    { user: 'sk03@sk.com', isbn: '9791130620459', stars: '1' },
+    { user: 'sk03@sk.com', isbn: '9791187498384', stars: '2' },
+    { user: 'sk03@sk.com', isbn: '9788950979300', stars: '1' },
+    { user: 'sk04@sk.com', isbn: '9788937461033', stars: '5' },
+    { user: 'sk04@sk.com', isbn: '8949190028', stars: '5' },
+    { user: 'sk04@sk.com', isbn: '9788937460470', stars: '5' },
+    { user: 'sk04@sk.com', isbn: '9788932903187', stars: '5' },
+    { user: 'sk04@sk.com', isbn: '8973374931', stars: '5' },
+    { user: 'sk04@sk.com', isbn: '9791196067694', stars: '4' },
+    { user: 'sk04@sk.com', isbn: '9791160560640', stars: '3' },
+    { user: 'sk04@sk.com', isbn: '9788934982975', stars: '5' },
+    { user: 'sk04@sk.com', isbn: '9788965707561', stars: '5' },
+    { user: 'sk04@sk.com', isbn: '9788997092772', stars: '5' },
+    { user: 'sk04@sk.com', isbn: '9791158510244', stars: '5' },
+    { user: 'sk04@sk.com', isbn: '9788950979300', stars: '1' },
+    { user: 'sk04@sk.com', isbn: '9788952795090', stars: '1' },
+    { user: 'sk04@sk.com', isbn: '9791162339466', stars: '1' },
+    { user: 'sk04@sk.com', isbn: '9788934982975', stars: '1' },
+    { user: 'sk04@sk.com', isbn: '9791187345268', stars: '1' },
+    { user: 'sk04@sk.com', isbn: '9791160560640', stars: '1' },
+    { user: 'sk04@sk.com', isbn: '9791187498384', stars: '1' },
+    { user: 'sk05@sk.com', isbn: '8973374931', stars: '5' },
+    { user: 'sk05@sk.com', isbn: '9788935212484', stars: '5' },
+    { user: 'sk05@sk.com', isbn: '9791186560860', stars: '5' },
+    { user: 'sk05@sk.com', isbn: '9791158510244', stars: '5' },
+    { user: 'sk05@sk.com', isbn: '9788997396870', stars: '5' },
+    { user: 'sk05@sk.com', isbn: '9791186757093', stars: '4' },
+    { user: 'sk05@sk.com', isbn: '9791160560640', stars: '3' },
+    { user: 'sk05@sk.com', isbn: '9788934982975', stars: '5' },
+    { user: 'sk05@sk.com', isbn: '9791189709440', stars: '5' },
+    { user: 'sk05@sk.com', isbn: '9791187498384', stars: '1' },
+    { user: 'sk05@sk.com', isbn: '9791188874262', stars: '1' },
+    { user: 'sk05@sk.com', isbn: '9788950979317', stars: '2' },
+    { user: 'sk05@sk.com', isbn: '9791187119845', stars: '1' },
+    { user: 'ke01@sk.com', isbn: '9788937461033', stars: '5  ' },
+    { user: 'ke01@sk.com', isbn: '8949190028', stars: '4 ' },
+    { user: 'ke01@sk.com', isbn: '9788952795090', stars: '1  ' },
+    { user: 'ke01@sk.com', isbn: '9788937460470', stars: '5' },
+    { user: 'ke01@sk.com', isbn: '9788932903187', stars: '5' },
+    { user: 'ke01@sk.com', isbn: '9791130620459', stars: '5' },
+    { user: 'ke01@sk.com', isbn: '9791196067694', stars: '4' },
+    { user: 'ke01@sk.com', isbn: '9788965746669', stars: '5' },
+    { user: 'ke01@sk.com', isbn: '9791160560640', stars: '5' },
+    { user: 'ke01@sk.com', isbn: '9788965707561', stars: '1' },
+    { user: 'ke02@sk.com', isbn: '8949190028', stars: '5 ' },
+    { user: 'ke02@sk.com', isbn: '9788937460470', stars: '5 ' },
+    { user: 'ke02@sk.com', isbn: '9788932903187', stars: '4 ' },
+    { user: 'ke02@sk.com', isbn: '8973374931', stars: '5 ' },
+    { user: 'ke02@sk.com', isbn: '9788934972464', stars: '5 ' },
+    { user: 'ke02@sk.com', isbn: '9791160560510', stars: '5 ' },
+    { user: 'ke02@sk.com', isbn: '9788934982975', stars: '5 ' },
+    { user: 'ke02@sk.com', isbn: '9788954637756', stars: '5 ' },
+    { user: 'ke02@sk.com', isbn: '9791186560860', stars: '1 ' },
+    { user: 'ke02@sk.com', isbn: '9791157280292', stars: '1' },
+    { user: 'ke03@sk.com', isbn: '9788935212484', stars: '5' },
+    { user: 'ke03@sk.com', isbn: '9791186560860', stars: '4' },
+    { user: 'ke03@sk.com', isbn: '9791158510244', stars: '5' },
+    { user: 'ke03@sk.com', isbn: '9788997396870', stars: '5' },
+    { user: 'ke03@sk.com', isbn: '9791187498384', stars: '4' },
+    { user: 'ke03@sk.com', isbn: '9791157280292', stars: '5' },
+    { user: 'ke03@sk.com', isbn: '9788932034942', stars: '5' },
+    { user: 'ke03@sk.com', isbn: '9791187119845', stars: '5' },
+    { user: 'ke03@sk.com', isbn: '8949190028', stars: '1' },
+    { user: 'ke03@sk.com', isbn: '9788950979317', stars: '1' },
+    { user: 'ke04@sk.com', isbn: '9791186757093', stars: '5' },
+    { user: 'ke04@sk.com', isbn: '9791189709440', stars: '5' },
+    { user: 'ke04@sk.com', isbn: '9791196588502', stars: '5' },
+    { user: 'ke04@sk.com', isbn: '9788957369937', stars: '4' },
+    { user: 'ke04@sk.com', isbn: '9788934994862', stars: '5' },
+    { user: 'ke04@sk.com', isbn: '9788950979430', stars: '5' },
+    { user: 'ke04@sk.com', isbn: '9788954653817', stars: '4' },
+    { user: 'ke04@sk.com', isbn: '9788998046682', stars: '5' },
+    { user: 'ke04@sk.com', isbn: '9788965746669', stars: '1' },
+    { user: 'ke04@sk.com', isbn: '9791188874262', stars: '1' },
+    { user: 'ke05@sk.com', isbn: '9788965707561', stars: '4' },
+    { user: 'ke05@sk.com', isbn: '9788997092772', stars: '4' },
+    { user: 'ke05@sk.com', isbn: '9788957369937', stars: '5' },
+    { user: 'ke05@sk.com', isbn: '9791196588502', stars: '5' },
+    { user: 'ke05@sk.com', isbn: '9788954619578', stars: '4' },
+    { user: 'ke05@sk.com', isbn: '9791195522125', stars: '3' },
+    { user: 'ke05@sk.com', isbn: '9788998046682', stars: '5' },
+    { user: 'ke05@sk.com', isbn: '9788954653817', stars: '5' },
+    { user: 'ke05@sk.com', isbn: '9788937460470', stars: '2' },
+    { user: 'ke05@sk.com', isbn: '9788934972464', stars: '1' }];
+
+  eee.forEach((n) => {
+    jsondata.push(n);
+  });
+
+  jsondata.forEach((fav) => {
+    const favo = new Favorite(fav);
+    favo.save((err) => {
+      if(err)
+        console.log(err);
+    });
   });
 };
 
@@ -20,7 +156,7 @@ exports.getPythonFunction = (req, res) => {
   // child_process module and assign it
   // to variable spawn
 
-  var spawn = require('child_process').spawn;
+  const spawn = require('child_process').spawn;
 
   // Parameters passed in spawn -
   // 1. type_of_script
@@ -29,7 +165,7 @@ exports.getPythonFunction = (req, res) => {
 
   // E.g : http://localhost:3000/name?firstname=Mike&lastname=Will
   // so, first name = Mike and last name = Will
-  var process = spawn('python3',[__dirname + "/collaborativefilltering.py", 1, 2] );
+  const process = spawn('python3', [`${__dirname}/collaborativefilltering.py`, 1, 2]);
   console.log('pypypy');
   // Takes stdout data from script which executed
   // with arguments and send this data to res object
@@ -37,14 +173,14 @@ exports.getPythonFunction = (req, res) => {
     console.log(data.toString());
   });
 
-  process.stderr.on('data', function (data) {
-    console.log('stderr: ' + data.toString());
+  process.stderr.on('data', (data) => {
+    console.log(`stderr: ${data.toString()}`);
   });
 
-  process.on('exit', function (code) {
-    console.log('child process exited with code ' + code.toString());
+  process.on('exit', (code) => {
+    console.log(`child process exited with code ${code.toString()}`);
   });
-}
+};
 
 // /book/setfavoritebook
 // 도서 평점 등록
@@ -60,7 +196,13 @@ exports.regFavoriteBook = (req, res) => {
       stars: req.body.stars
     });
     favorite.save((err) => {
-      if (err) { console.log(err); } else {
+      if (err) {
+        if (err.code === 11000) {
+          req.flash('errors', { msg: '이미 등록된 도서입니다.' });
+          return res.redirect('/book');
+        }
+        console.log(err);
+      } else {
         res.status(200);
         res.send('SUCCESS');
       }
@@ -121,27 +263,25 @@ exports.regBook = (req, res) => {
 // 전체 도서 목록 열람
 exports.getBookList = (req, res) => {
   Book.find({}, (err, books) => {
-    if (err) { console.log(err); }
-    else {
+    if (err) { console.log(err); } else {
       res.status(200);
       res.json(books);
     }
   });
-}
+};
 
 // /book/info
 // ISBN에 대한 도서 정보 열람
 // Params: ISBN
 exports.getBookInfo = (req, res) => {
-  Book.findOne({isbn: req.body.isbn}, (err, info) => {
-    if (err) { console.log(err); }
-    else {
+  Book.findOne({ isbn: req.body.isbn }, (err, info) => {
+    if (err) { console.log(err); } else {
       console.log(info);
       res.status(200);
       res.json(info);
     }
   });
-}
+};
 
 // /book/best
 exports.getBestBook = (req, res) => {
@@ -155,7 +295,6 @@ exports.getBestBook = (req, res) => {
   bestBookIsbn.push('9788937460470'); // 호밀밭의 파수꾼
   bestBookIsbn.push('9788932903187'); // 향수
   bestBookIsbn.push('8973374931'); // 눈먼자들의도시
-  bestBookIsbn.push('9788949120744'); // 기억전달자
 
   // // 어린이
   // bestBookIsbn.push('9788950979300');
@@ -240,5 +379,6 @@ exports.getBestBook = (req, res) => {
   });
 };
 
-//http://localhost:8000/recommend?user_id=254
-//http://localhost:8000/match?str1=abc&str2=bbd
+// http://localhost:8000/recommend?user_id=254
+// http://localhost:8000/match?str1=abc&str2=bbd
+

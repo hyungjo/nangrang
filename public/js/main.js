@@ -49,7 +49,10 @@ function getBookInfo(){
         contentType : 'application/json',
         data : JSON.stringify({isbn: book_isbn}),
         success : function(result){
-            alert(result);
+            $('#bookimage').attr("src",result.image);
+            $('#booktitle').text(result.title);
+            $('#bookauthor').text(result.author);
+            $('#bookdescription').text(result.description);
         },
         error   : function (err) {
             alert(err);

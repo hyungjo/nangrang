@@ -5,6 +5,7 @@ from flask import Flask, redirect, url_for, request,jsonify
 from difflib import *
 import pymongo
 import re
+import operator
 
 app = Flask(__name__)
 
@@ -13,8 +14,8 @@ is_corr = False
 test = [1544, 2160 ,1688 ,551, 1]
 id_to_index = {}
 index_to_id = {}
-movie_to_index = {}
-index_to_movie = {}
+item_to_index = {}
+index_to_item = {}
 
 def set_matrix(my_data):
     unique_Id, counts = np.unique(my_data[:, 1], return_counts=True)
@@ -103,8 +104,10 @@ def read_data(filename):
 
 
 def recommend(user_id):
-    matrix,item_corr = read_data("train_v2.csv")
+    matrix,item_corr = read_db()
+
     seen_list,seen_dict,unseen_list,unseen_dict = get_user_itemlist(matrix,id_to_index[user_id])
+
     for unseen_ in unseen_list:
         numer = 0
         denom = 0
@@ -119,6 +122,7 @@ def recommend(user_id):
         else:
             unseen_dict[unseen_] = numer / denom
 
+
     return sorted(unseen_dict.items(), key = operator.itemgetter(1),reverse=True)
 
 def get_user_itemlist(matrix,user_id):
@@ -126,7 +130,9 @@ def get_user_itemlist(matrix,user_id):
     seen_dict = {}
     unseen_list = []
     unseen_dict = {}
+
     for idx, item in enumerate(matrix[user_id]):
+        print(item)
         if item != 0:
             seen_list.append([idx, item])
             seen_dict[idx] = item
@@ -134,6 +140,8 @@ def get_user_itemlist(matrix,user_id):
             unseen_dict[idx] = item
             unseen_list.append(idx)
         seen_list.sort(key=lambda x: x[1], reverse=True)
+
+
     return seen_list,seen_dict,unseen_list,unseen_dict
 
 def find_similar_item(item_corr,item_id):
@@ -143,7 +151,7 @@ def find_similar_item(item_corr,item_id):
 
 @app.route("/recommend",methods=['GET', 'POST'])
 def eval():
-    user_id = int(request.args.get('user_id'))
+    user_id = request.args.get('user_id')
     count = int(request.args.get('count'))
 
     result_list = []
@@ -206,17 +214,35 @@ def read_db():
     conn = connection_mongo("localhost",27017)
 
     db = conn.get_database("test")
-    collection = db.get_collection("favorite")
+    collection = db.get_collection("favorites")
 
     results = collection.find()
 
     matrix = []
-
     for result in results:
-        matrix.append([result["id"],result["isbn"],result["stars"]])
+        matrix.append([result["user"],result["isbn"],result["stars"]])
 
+
+    data = np.array(matrix)
+
+    unique_id = np.unique(data[:,0])
+    unique_itemid = np.unique(data[:,1])
+
+    x,y = len(unique_id),len(unique_itemid)
+    matrix = np.ones((x,y),dtype=int)
+
+
+    for idx,id in enumerate(unique_id):
+        id_to_index[id] = idx
+        index_to_id[idx] = idx
+
+    for idx,id in enumerate(unique_itemid):
+        item_to_index[id] = idx
+        index_to_item[idx] = id
+
+    for raw in data:
+        matrix[id_to_index[raw[0]]][item_to_index[raw[1]]] =  int(raw[2])
     item_corr = pearson_corr(matrix)
-    print(matrix)
     return matrix ,item_corr
 
 app.run(host='localhost', port=8000, debug=True)

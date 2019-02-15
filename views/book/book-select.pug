@@ -1,3 +1,26 @@
+style.
+    #outer-box #inner-box {
+        background: #FD8698;
+        height: 100%;
+        width: 100%;
+        opacity: 0;
+        top: 0;
+        left: 0;
+        position: absolute;
+        padding: 0;
+        transition: opacity .5s;
+    }
+    #outer-box #inner-box p {
+        color: #fff;
+        line-height: 150px;
+        font-family: 'arial';
+        text-align: center;
+    }
+    #outer-box:hover #inner-box {
+        opacity: .9;
+        transition: opacity .5s;
+    }
+
 .inner
     ul#myTab.nav.nav-tabs(role='tablist')
         li.nav-item
@@ -13,33 +36,25 @@
                     label.sr-only(for='isbncode') ISBN Code
                     input#isbncode.form-control(type='text', placeholder='ISBN Code')
                 button.btn.btn-primary.mb-2(type='button', onclick='getBookInfo()') 검색
-            
             .col-md-6(style = 'padding-right:16px; padding-top:10px; border : 1px solid lightgray; max-width:100%;')
                 .row
                     .col-md-2
                         .div(align = 'center')
-                            img.poster(src="/book.png" width="100%" height=auto align='center')
+                            img#bookimage.poster(src="/book.png" width="100%" height=auto align='center')
                     .col-md-9
                         h3(style='color:black; padding-left:0px; padding-top:5px;') 책 제목
-                        p
-                            | 우리와 당신들
+                        p#booktitle
                         h3(style='color:black; padding-left:0px;') 저자
-                        p
-                            | 프레드릭 배크만
+                        p#bookauthor
                 .row
                     .col
-
-                        p(style='padding-top:15px;')
-                            | 소중한 사람을 지키기 위해 용기를 낸 어느 조그만 마을 사람들의 이야기! 
-                        p   | 《오베라는 남자》의 저자 프레드릭 배크만이 탄생시킨 새로운 대표작 《베어타운》의 두 번째 이야기 『우리와 당신들』. 일자리도, 미래도 없이 막다른 곳에 내몰린 소도시, 베어타운을 배경으로 공동체를 하나로 엮는 희망과 그 공동체를 갈기갈기 찢어놓는 비밀, 대의를 위해 잡음을 모른척하려는 이기심과 대의에 반하는 선택을 하는 한 개인의 용기를 생생하게 그려낸 전작 《베어타운》에 이어 이미 무너진 마을에 찾아온 두 번째 비극을 그리고 있다.
-                            | 충격적인 사건으로 마을 사람들은 큰 꿈을 품은 대가를 가슴 아프게 치른 지 몇 달 뒤, 베어타운의 쓸쓸한 풍경에서 이야기는 시작된다. 이미 베어타운 하키팀은 뿔뿔이 흩어졌고, 주요 선수들은 코치와 함께 옆 마을 헤드의 하키팀으로 옮겨갔다. 베어타운에 남은 선수들에겐 하키팀 해체라는 혹독한 소문만이 들려온다. 베어타운과 헤드의 신경전은 돈과 권력과 생존을 둘러싸고 점점 더 치열해져가고, 그 와중에 한 선수의 가장 조심스러운 비밀이 폭로되자 온 마을이 그들의 진심을 보여주어야 할 난처한 상황에 처하는데…….소중한 사람을 지키기 위해 용기를 낸 어느 조그만 마을 사람들의 이야기!
-                        pre. 
-        #recommand.tab-pane.fade(role='tabpanel', aria-labelledby='profile-tab') 추천 도서
-                figure.snip1141
-                    img(src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sq-sample27.jpg', alt='sq-sample27')
-                    figcaption
-                        .circle
-                            i.ion-ios-plus-empty  
-                        h2 Paris York
-                    a(href='#')
+                        p#bookdescription(style='padding-top:15px;')
+        #recommand.tab-pane.fade(role='tabpanel', aria-labelledby='profile-tab')
+            .row
+                for book in books
+                    #outer-box(style='width: 100px; height: auto; display: block; position: relative;')
+                        img(src=book.image style='width: 100px; height: auto;')
+                        #inner-box
+                            p #{book.title}
+                                a.info.border(href='http://www.naver.com' style="text-align: center;") #{book.author}
         #list.tab-pane.fade(role='tabpanel', aria-labelledby='contact-tab') 전체 도서
