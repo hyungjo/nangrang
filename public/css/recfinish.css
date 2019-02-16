@@ -1,0 +1,35 @@
+/* DEMO STYLES */
+recfinish {
+    max-width: 300px;
+    margin: 1em auto;
+    background: #db3a3d;
+    text-align:center;
+  }
+  
+  mark{
+    color: red;
+  }
+  
+  
+  /* PROGRESS CIRCLE COMPONENT */
+  .circliful {
+      margin:auto;
+      position: relative; 
+  }
+  
+  .circle-text, .circle-info, .circle-text-half, .circle-info-half {
+      width: 100%;
+      position: absolute;
+      text-align: center;
+      display: inline-block;
+  }
+  
+  .circle-info, .circle-info-half {
+      color: #dee2e6;
+  }
+  
+  .circliful .fa {
+      margin: -10px 3px 0 3px;
+      position: relative;
+      bottom: 4px;
+  }

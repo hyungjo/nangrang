@@ -11,39 +11,18 @@
             padding-left:0px;
         }
     .row
-        .col-md-8.blog-main.ml-5.mt-2(style = 'padding-right:35px;')
+        .col-md-10.blog-main.ml-5.mt-2(style = 'padding-right:35px;')
             .blog-post
-                .card.p-3.mb-3.shadow-sm.h-md-250
-                    h3.text-center(style='color:black;padding-left:0px;') 책 제목
-                    p
-                    | Viv   amus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-
-                .pt-4.pl-4.pr-4.mb-3.bg-light.rounded.scrollbar
-                    .form-row
-                        .form-group.col
-                            h3#originTitle 원본텍스트
-                            .textcontent
-                                p
-                                |  mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.
-                                |  mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.
-                                |  mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.
-                                |  mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.
-                                |  mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.
-                                |  mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.
-                                |  mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.
-                                p
-                        .form-group.col
-                            h3#recordTitle 녹음텍스트
-                            .textcontent
-                                p
-                                | 안녕하세요!
-                                p
-
-        aside.col-md-3.m-1.mt-1.blog-sidebar(style = 'border-left : 1px solid lightgray; padding-left:7px;')
-            .p-3
-                h4 녹음
-                ol.list-unstyled.mb-0
-                    p.mb-0
-                    | Etiam porta
-                    em sem malesuada magna
-                    |  mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.
+                .card.p-2.mb-3.shadow-sm.h-md-250
+                    #recfinish
+                        .well(style='background: #fff;')
+                            h1(style="color:black; text-align:center") 검수결과
+                            hr
+                            .row
+                                #progress(data-dimension='200', data-text='65%', data-fontsize='36', data-percent='65', data-fgcolor='#30B455', data-bgcolor='#eee', data-width='15', data-bordersize='15', data-animationstep='2')
+                            br
+                            h3(style="color:black; text-align:center; padding-left:0px;")
+                                | 검수결과 
+                                mark#passfail 합격
+                                |  입니다.
+                            h3

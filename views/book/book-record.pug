@@ -20,19 +20,10 @@
                     td(align='center')
                     input#btn_recStart.btn.btn-default(type='button', value='녹음시작', onclick='recStart(this)' style='margin-left:13px')
                     input#btn_recStop.btn.btn-default(type='button', value='녹음중지', onclick='recStop(this)', disabled='')
-                    input#btn_recFinish.btn.btn-default(type='button', value='검수시작', onclick='recFinish(this)', disabled='', style='float:right')
                     td(style='width:60%')
                     .row
                         .col-md-8
                             canvas#analyser(style='width:100%; height:100px; padding-top:10px; padding-left:15px') 
-                        .col-md-4 
-                            #finishscore 우경은
-                                p
-                                | 검수 결과 
-                                h1.
-                                    30%
-                                p
-                                | 정확도로 불합격입니다. 
                             
     .row
         .col
@@ -42,28 +33,11 @@
                             | 이 책은 최근 변화된 입시 환경을 경험해 보지 않은 학습 전문가의 공부 이야기가 아니다. 기적적으로 성적을 올린 단 한 사람만의 합격 수기도 아니다. 가장 최신의 입시를 ‘직접’ 준비하여 서울대에 합격하고, 진학 후에도 같은 공부 패턴을 적용해 각종 고시와 시험에 합격한 ‘서울대생 100인’을 통해 2019년 입시 공부의 절대 본질을 전한다. 하루 종일 공부만 하는데도 번번이 노력에 배신당하고 있다면, 의지가 나약한 자신을 자책하고 있다면, 기초가 부족해 체계화된 입시 코디가 필요하다면, 지금 바로 이 책을 읽고 체크를 시작해 보자. 서울대 100인이 매일 실천해 왔다고 응답한 60가지 체크 리스트를 하나씩 따라 하다 보면, 누구나 쉽고 빠르게 성적의 급상승을 경험하고 원하는 시험에 합격할 수 있다
                         pre.
         .col(style='padding-left:0px;')
-            h3(style='color:black; padding-left:24px;') STT
-            
-                //-   head
-                //-     meta(charset='utf-8')
-                //-     meta(http-equiv='X-UA-Compatible', content='IE=edge')
-                //-     meta(name='viewport', content='width=device-width, initial-scale=1')
-                //-     meta(name='description', content='')
-                //-     meta(name='author', content='')
-                //-     link(rel='stylesheet', href='/css/stt.common.css')
-                //-     style.
-                //-     canvas {
-                //-     display: inline-block;
-                //-     background: #202020;
-                //-     width: 95%;
-                //-     height: 45%;
-                //-     box-shadow: 0px 0px 10px blue;
-                //-     align: center;
-                //-     }
-                div
-                    .col-xs-12
-                        .panel.panel-default
-                            .panel-heading
-                            span#span_textarea0
-                            .panel-body
-                            textarea#mfl_text0.form-control.rounded-0(rows='18', style='padding-top:15px;')
+            h3(style='color:black; padding-left:10px;') STT
+            div
+                .col-xs-12
+                    .panel.panel-default
+                        .panel-heading
+                        span#span_textarea0
+                        .panel-body
+                        textarea#mfl_text0.form-control.rounded-0(rows='18', style='padding-top:15px;')

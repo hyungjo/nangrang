@@ -67,13 +67,6 @@ var websocket = null;
 		
 		audioRecorder.stop();
 		audioRecorder.getBuffers( gotBuffers );
-	}
-
-	function recFinish() {
-		$('#btn_recStart').prop("disabled", false);
-		$('#btn_recStop').prop("disabled", true);
-		
-		g_stat = 3;
 
 		$.ajax({
 			url: 'http://localhost:8080/recfinish',
@@ -89,10 +82,8 @@ var websocket = null;
 				console.log('ERROR: call inspection');
 			}
 		});
-		
-		
 	}
-			
+
 	function mainGetSliceBuffers() { 
 		g_stat = 1;
 		audioRecorder.getBuffers( gotBuffers );
@@ -197,3 +188,6 @@ var websocket = null;
 	window.onbeforeunload = function() {
 		websocket.close();
 	}
+
+
+	
