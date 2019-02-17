@@ -52,7 +52,7 @@ style.
         #recommand.tab-pane.fade(role='tabpanel', aria-labelledby='profile-tab')
             .row
                 for book in books
-                    #outer-box(style='width: 100px; height: auto; display: block; position: relative;')
+                    #outer-box(style='width: 100px; height: auto; display: block; position: relative;', onclick="selectBook(this)")
                         img(src=book.image style='width: 100px; height: auto;')
                         #inner-box
                             p #{book.title}
