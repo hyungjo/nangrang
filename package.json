@@ -22,6 +22,7 @@
     "@octokit/rest": "^16.13.3",
     "axios": "^0.18.0",
     "bcrypt-nodejs": "^0.0.3",
+    "blob": "0.0.5",
     "body-parser": "^1.18.3",
     "bootstrap": "^4.2.1",
     "chalk": "^2.4.2",
@@ -68,8 +69,9 @@
     "tumblr.js": "^2.0.0",
     "twilio": "^3.27.1",
     "twit": "^2.2.11",
+    "unirest": "^0.5.1",
     "validator": "^10.11.0",
-    "blob": "0.0.5"
+    "xml2js": "^0.4.19"
   },
   "devDependencies": {
     "chai": "^4.2.0",
