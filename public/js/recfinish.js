@@ -1,8 +1,8 @@
 
 
-$(function() {
-	$('#progress').circliful();
-});
+// $(function() {
+// 	$('#progress').circliful();
+// });
 
 
 //Note -- I removed the respondCanvas function from the circiful library

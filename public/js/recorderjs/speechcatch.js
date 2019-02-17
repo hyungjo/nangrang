@@ -78,9 +78,16 @@ var websocket = null;
 				console.log('SUCCESS: call inspection');
 				console.log(result)
 				$('#resultscore').text(result.score);
-				$('#progress').attr('data-text', (result.score + '%'));
-				$('#progress').attr('data-percent', result.score);
-				$('#progress').refresh();
+				$('#progress').attr('data-text', (Math.ceil(result.score) + '%'));
+				$('#progress').attr('data-percent', Math.ceil(result.score));
+				$('#progress').circliful();
+				if(result.score > 80){
+					$('#passfail').html("합격");
+					$('#passfail').css("color", "blue");
+				} else {
+					$('#passfail').html("불합격");
+					$('#passfail').css("color", "red");
+				}
 			},
 			error: function(response, status, error) {
 				console.log('ERROR: call inspection');
