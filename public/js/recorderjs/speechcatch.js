@@ -77,11 +77,14 @@ var websocket = null;
 			success: function(result) {
 				console.log('SUCCESS: call inspection');
 				console.log(result)
+				debugger;
+				$('#progress').remove()
+				$('#pogressrow').html("<div id='progress' data-dimension='200' data-text='65%' data-fontsize='36' data-percent='65' data-fgcolor='#30B455' data-bgcolor='#eee' data-width='15' data-bordersize='15' data-animationstep='2'></div>");
 				$('#resultscore').text(result.score);
 				$('#progress').attr('data-text', (Math.ceil(result.score) + '%'));
 				$('#progress').attr('data-percent', Math.ceil(result.score));
 				$('#progress').circliful();
-				if(result.score > 80){
+				if(result.score >= 80){
 					$('#passfail').html("합격");
 					$('#passfail').css("color", "blue");
 				} else {
