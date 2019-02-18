@@ -1,0 +1,24 @@
+extends ../layout
+
+block content
+    .container-fluid
+        .page-content
+            .wizard-v5-content
+                .wizard-form#mypage-all-frame
+                    form#form-register.form-register(action='#', method='post')
+                        #form-total-mypage
+                            // SECTION 1
+                            h2
+                                span.step-text 나의 E-Book
+                            section#mypage1
+                                include mypage1
+                            // SECTION 2
+                            h2
+                                span.step-text 나의 Audio-Book
+                            section#mypage2
+                                include mypage2
+                            // SECTION 3
+                            h2
+                                span.step-text 수익금
+                            section#mypage3
+                                include mypage3

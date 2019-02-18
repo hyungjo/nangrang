@@ -1,0 +1,19 @@
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-size: 100%, 100%;
+  background-image: none; }
+
+.carousel-control-next-icon:after {
+  content: '>';
+  font-size: 60px;
+  color: black; }
+
+.carousel-control-prev-icon:after {
+  content: '<';
+  font-size: 60px;
+  color: black; }
+
+.carousel-caption {
+  top: 80%;
+  bottom: auto;
+  color: black; }
