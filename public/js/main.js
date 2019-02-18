@@ -36,27 +36,27 @@ $(document).ready(() => {
             return true;
         }
     });
+
+    $("#form-total-mypage").steps({
+        headerTag: "h2",
+        bodyTag: "section",
+        transitionEffect: "fade",
+        enableAllSteps: true,
+        autoFocus: true,
+        transitionEffectSpeed: 500,
+        titleTemplate : '<div class="title">#title#</div>',
+        labels: {
+            next : 'Next',
+            finish : '<i class="zmdi zmdi-chevron-right"></i>',
+            current : ''
+        },
+        onStepChanging: function (event, currentIndex, newIndex) {
+            return true;
+        }
+    });
 });
 
 // 도서 등록
 function getBookInfo(){
-    var book_isbn = $('#isbncode').val();
-
-    $.ajax({
-        type : "POST",
-        url : "/book/reg",
-        dataType : 'json',
-        contentType : 'application/json',
-        data : JSON.stringify({isbn: book_isbn}),
-        success : function(result){
-            $('#bookimage').attr("src",result.image);
-            $('#booktitle').text(result.title);
-            $('#bookauthor').text(result.author);
-            $('#bookdescription').text(result.description);
-        },
-        error   : function (err) {
-            alert(err);
-        }
-
-    });
+    alert('aaaaa');
 }

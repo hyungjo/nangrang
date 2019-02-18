@@ -46,7 +46,7 @@ const userController = require('./controllers/user');
 const apiController = require('./controllers/api');
 const contactController = require('./controllers/contact');
 const recordController = require('./controllers/record')
-
+const mypageController = require('./controllers/mypage')
 const bookController = require('./controllers/book');
 const sttController = require('./controllers/stt');
 
@@ -104,8 +104,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 app.use((req, res, next) => {
-  if (req.path === '/api/upload' || req.path === '/stt' || req.path === '/record' || req.path === '/book'
-  || req.path === '/book/info' || req.path === '/book/reg' || req.path === '/recfinish' ) {
+  if (req.path === '/api/upload' || req.path === '/stt' || req.path === '/record' || req.path === '/book') {
     next();
   } else {
     lusca.csrf()(req, res, next);
@@ -175,15 +174,18 @@ app.get('/account/unlink/:provider', passportConfig.isAuthenticated, userControl
 app.get('/book', bookController.getBook);
 app.post('/stt', sttController.postStt);
 app.post('/record', recordController.setRecord);
-app.post('/recfinish', recordController.finishRecord);
+
 app.post('/book/favorite/reg', bookController.regFavoriteBook);
 app.get('/book/favorite/list', bookController.getFavoriteBook);
 app.post('/book/reg', bookController.regBook);
 app.get('/book/list', bookController.getBookList);
-app.post('/book/info', bookController.getBookInfo);
+app.get('/book/info', bookController.getBookInfo);
 app.get('/book/best', bookController.getBestBook);
-app.get('/book/test', bookController.getPythonFunction);
-app.get('/book/ins', bookController.insertJson);
+
+app.get('/mypage', mypageController.getMypage);
+app.get('/mypage/getMypage1', mypageController.getMyEBookList);
+app.get('/mypage/getMypage2', mypageController.getMypage2);
+app.get('/mypage/getMypage3', mypageController.getMypage3);
 
 /**
  * API examples routes.

@@ -1,0 +1,57 @@
+.inner
+    main.container()
+        .form-row.mt-5
+            .form-group.col-md-6
+                h1 책별 판매량
+                section
+                    .pieID.pie
+                    ul.pieID.legend
+                        li
+                            em 당신들
+                            span 5
+                        li
+                            em 넛지
+                            span 7
+                        li
+                            em 동물농장
+                            span 3
+                        li
+                            em 죄와 벌
+                            span 4
+                        li
+                            em 정의
+                            span 2
+            .form-group.col-md-6(style='padding-left:3px')
+                h1 E-Book vs Audio-Book
+                #chart18
+                    script.
+                        var options = {
+                        'legend':{
+                        names: ['6월', '7월', '8월', '9월', '10월', '11월','12월'],
+                        hrefs: []
+                        },
+                        'dataset':{
+                        title:'Playing time per day',
+                        values: [[5,2], [3,2], [7,2], [6,1], [5,3], [8,3], [6,3]],
+                        colorset: ['#A360FF', '#6CE8FF'],
+                        fields:['E-book', 'Audio-Book']
+                        },
+                        'chartDiv' : 'chart18',
+                        'chartType' : 'multi_column',
+                        'chartSize' : {width:400, height:300},
+                        'maxValue' : 10,
+                        'increment' : 1
+                        };
+                        Nwagon.chart(options);
+meta(charset='utf-8')
+title Nwagon demo
+style.
+    *{margin:0;padding:0;}
+    div{padding:0px; overflow: hidden;  height: auto;}
+    .hgroup{padding:20px;background-color:#e9e9e9;}
+    .hgroup h1{font-family:Tahoma;}
+    .hgroup p{margin:10px 0;font-size:10px}
+    h2{margin:0;padding:20px;border:1px solid #000;background-color:#f9f9f9;
+    border-width:1px 0;font-family:Tahoma;}
+link(rel='stylesheet', href='../../css/Nwagon.css', type='text/css')
+script(src='../../js/Nwagon.js')
