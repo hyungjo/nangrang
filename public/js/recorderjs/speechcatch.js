@@ -77,6 +77,19 @@ var websocket = null;
 			success: function(result) {
 				console.log('SUCCESS: call inspection');
 				console.log(result)
+
+				var before = $('#original-text').text();
+				var after = $('#mfl_text0').val();
+				$('#mfl_text0').remove();
+				// Diff HTML strings
+				var output = htmldiff(before, after);
+				console.log(output);
+				// Show HTML diff output as HTML (crazy right?)!
+				$('#diff').html(output);
+
+				console.log(before);
+				console.log(after);
+
 				$('#resultscore').text(result.score);
 				$('#progress').attr('data-text', (Math.ceil(result.score) + '%'));
 				$('#progress').attr('data-percent', Math.ceil(result.score));

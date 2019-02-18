@@ -21,40 +21,19 @@ style.
         transition: opacity .5s;
     }
 
-.inner
-    ul#myTab.nav.nav-tabs(role='tablist')
-        li.nav-item
-            a#home-tab.nav-link.active(data-toggle='tab', href='#reg', role='tab', aria-controls='reg', aria-selected='true') 도서 등록
-        li.nav-item
-            a#profile-tab.nav-link(data-toggle='tab', href='#recommand', role='tab', aria-controls='recommand', aria-selected='false') 추천 도서
-        li.nav-item
-            a#profile-tab.nav-link(data-toggle='tab', href='#list', role='tab', aria-controls='list', aria-selected='false') 전체 도서
-    #myTabContent.tab-content
-        #reg.tab-pane.fade.show.active(role='tabpanel', aria-labelledby='home-tab', style = 'padding-top:20px')
-            .form-inline(style = 'padding-bottom:16px;')
-                .form-group.mb-2
-                    label.sr-only(for='isbncode') ISBN Code
-                    input#isbncode.form-control(type='text', placeholder='ISBN Code')
-                button.btn.btn-primary.mb-2(type='button', onclick='getBookInfo()') 검색
-            .col-md-6(style = 'padding-right:16px; padding-top:10px; border : 1px solid lightgray; max-width:100%;')
-                .row
-                    .col-md-2
-                        .div(align = 'center')
-                            img#bookimage.poster(src="/book.png" width="100%" height=auto align='center')
-                    .col-md-9
-                        h3(style='color:black; padding-left:0px; padding-top:5px;') 책 제목
-                        p#booktitle
-                        h3(style='color:black; padding-left:0px;') 저자
-                        p#bookauthor
-                .row
-                    .col
-                        p#bookdescription(style='padding-top:15px;')
-        #recommand.tab-pane.fade(role='tabpanel', aria-labelledby='profile-tab')
-            .row
-                for book in books
-                    #outer-box(style='width: 100px; height: auto; display: block; position: relative;', onclick="selectBook(this)")
-                        img(src=book.image style='width: 100px; height: auto;')
-                        #inner-box
-                            p #{book.title}
-                                a.info.border(href='http://www.naver.com' style="text-align: center;") #{book.author}
-        #list.tab-pane.fade(role='tabpanel', aria-labelledby='contact-tab') 전체 도서
+.row
+    .col-md-10
+        .row
+            for book in books
+                #outer-box(style='width: 100px; height: auto; display: block; position: relative;', onclick="selectBook(this)")
+                    img(src=book.image style='width: 100px; height: auto;')
+                    #inner-box
+                        p #{book.title}
+                            a.info.border(href='http://www.naver.com' style="text-align: center;") #{book.author}
+    .col-md-1
+        .row
+            .card(style='width:400px')
+                img.card-img-top#selectedbookimage(src='/img/book_temp.png', alt='Book image')
+                .card-body
+                    h4.card-title#selectedbooktitle
+                    p.card-text#selectedbookauthor
